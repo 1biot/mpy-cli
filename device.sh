@@ -28,7 +28,7 @@ function upload_dir() {
     if [ "$dir_item" != "." ] && [ "$dir_item" != ".." ] && [ "$dir_item" != ".DS_Store" ]; then
       [[ "$dir_to_upload" == "src" ]] && upload_target="" || upload_target="$dir_to_upload/"
       echo "ampy --port \"${DEVICE}\" -d \"${DELAY:=0}\" -- put \"$dir_to_upload/$dir_item\" \"$upload_target$dir_item\""
-      #ampy --port "${DEVICE}" -d "${DELAY:=0}" -- put "$dir_to_upload/$dir_item" "$upload_target$dir_item"
+      ampy --port "${DEVICE}" -d "${DELAY:=0}" -- put "$dir_to_upload/$dir_item" "$upload_target$dir_item"
     fi
   done
 }

@@ -128,7 +128,7 @@ mpy-cli device rmdir lib
 ## Future plans
 - [ ] guide script for initializing .mpy.json file
 - [ ] flashing micropython to the boards
-- [ ] uploading all includes files by one command
+- [x] uploading all includes files by one command
 - [ ] test more boards
 - [x] unify and pack to `mpy-cli` command and uses as like `mpy-cli connect` or `mpy-cli device ls`
 - [ ] installing `mpy-cli` to the `PATH` variable 
