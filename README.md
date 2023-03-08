@@ -35,6 +35,14 @@ Let's get started from project root
 cd Getting_started
 ```
 
+### Using mpy-cli
+```commandline
+PATH="$PATH:$PWD/tools/mpy-cli/bin"
+```
+
+Now you can use mpy-cli. You need call this line again when you start new promt,
+but you set `PATH` variable to you `.bashrc` or `.zshrc` file
+
 ### .mpy.json config file
 ```json
 {
@@ -47,13 +55,6 @@ cd Getting_started
     "include_dir": "src" // your project dir
 }
 ```
-### Using mpy-cli
-```commandline
-PATH=$PATH:$PWD/tools/mpy-cli
-```
-
-Now you can use mpy-cli. You need call this line again when you start new promt,
-but you set `PATH` variable to you `.bashrc` or `.zshrc` file
 
 ### Micropython project environment
 We need to initialize our project python environment. This command installs right stubs for your board. I tried only esp32, but I will test more boards.
@@ -125,8 +126,8 @@ mpy-cli device rmdir lib
 ## Future plans
 - [ ] guide script for initializing .mpy.json file
 - [ ] flashing micropython to the boards
-- [x] uploading all includes files by one command
 - [ ] test more boards
-- [x] unify and pack to `mpy-cli` command and uses as like `mpy-cli connect` or `mpy-cli device ls`
 - [ ] installing `mpy-cli` to the `PATH` variable 
 - [ ] help and documentation
+- [x] uploading all includes files by one command
+- [x] unify and pack to `mpy-cli` command and uses as like `mpy-cli connect` or `mpy-cli device ls`

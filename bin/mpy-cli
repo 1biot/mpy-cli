@@ -6,7 +6,7 @@ function help(){
 
 cli_dir=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 module="${1}"
-module_script="$cli_dir/$module.sh"
+module_script="$cli_dir/../$module.sh"
 
 if [ ! -f "$PWD/.mpy.json" ]; then
   echo "-E|No .mpy.json config file"
@@ -18,4 +18,4 @@ if [ ! -f "${module_script}" ]; then
   exit
 fi
 
-source "$cli_dir/$module.sh"
+source "${module_script}"
