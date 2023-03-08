@@ -43,9 +43,8 @@ cd Getting_started
     "micropython_version": "1.19.1", // micropython version
     "address": "/dev/tty.SLAB_USBtoUART", // device address
     "delay": 2, // delay for fixing bug with Ampy and MacOS
-    "include": [
-        "src"
-    ]
+    "env_path": ".venv", // you can choose path where mpy-cli install environment
+    "include_dir": "src" // your project dir
 }
 ```
 ### Using mpy-cli
