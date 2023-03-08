@@ -75,9 +75,6 @@ Type "help()" for more information.
 >>>
 ```
 ### Device file operations
-
-`device.sh` is wrapper only using Ampy and provides all functionality of that module. See
-
 ```commandline
 mpy-cli device --help
 ```
