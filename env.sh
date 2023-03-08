@@ -16,7 +16,10 @@ fi
 
 MPY_VERSION=$(echo "$JSON_CONFIG" | jq -r .micropython_version)
 
-ENV_DIRECTORY=".venv"
+ENV_DIRECTORY=$(echo "$JSON_CONFIG" | jq -r .env_path)
+if [ -z "${ENV_DIRECTORY}" ] || [ "${ENV_DIRECTORY}" = null ]; then
+  ENV_DIRECTORY=".venv"
+fi
 
 function init() {
   if [ ! -d "${ENV_DIRECTORY}" ]; then
@@ -24,7 +27,14 @@ function init() {
   fi
 
   source "${ENV_DIRECTORY}"/bin/activate
+  install_stubs
+}
 
+function deinit() {
+  deactivate
+}
+
+function install_stubs() {
   stubs="micropython-${DEVICE}"
   if [ -n "${MPY_VERSION}" ]; then
     stubs="${stubs}-${MPY_VERSION}"
@@ -33,20 +43,16 @@ function init() {
   pip install -U "${stubs}"
 }
 
-function deinit() {
-  deactivate
-}
-
 function remove() {
   if [ -d "${ENV_DIRECTORY}" ]; then
     rm -rf "${ENV_DIRECTORY}"
   fi
 }
 
-if declare -f "$1" > /dev/null
+if declare -f "$2" > /dev/null
 then
-  "$@"
+  "${a[@]:1}"
 else
-  echo "'${1}' is not a known function name" >&2
+  echo "-E|'${2}' is not a known function name" >&2
   exit 1
 fi

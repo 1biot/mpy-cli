@@ -6,4 +6,5 @@ if [ -z "${DEVICE}" ] || [ "${DEVICE}" = null ]; then
     exit 1
 fi
 
-mpremote connect "${DEVICE}" -- "$@"
+echo "mpremote connect \"${DEVICE}\" -- $*"
+mpremote connect "${DEVICE}" -- "$*"

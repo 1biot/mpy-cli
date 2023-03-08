@@ -1,0 +1,21 @@
+#!/bin/bash
+
+function help(){
+  echo "Help to mpy-cli"
+}
+
+cli_dir=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+module="${1}"
+module_script="$cli_dir/$module.sh"
+
+if [ ! -f "$PWD/.mpy.json" ]; then
+  echo "-E|No .mpy.json config file"
+  exit 1
+fi
+
+if [ ! -f "${module_script}" ]; then
+  help
+  exit
+fi
+
+source "$cli_dir/$module.sh"

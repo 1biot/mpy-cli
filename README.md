@@ -1,6 +1,9 @@
+> THIS IS EXPERIMENTAL AND SUBJECT OF CHANGE
+
 # Micropython Command line tools
 
 Tools providing device connection, file operations and preparing development environment for your Micropython projects.
+You can use this tool for creating environment for your favorite IDE (Pycharm, Visual Studio Code).
 
 ## Requirements
 - [Python 3](https://www.python.org/downloads/)
@@ -11,7 +14,6 @@ Tools providing device connection, file operations and preparing development env
 
 ```commandline
 git clone https://github.com/1biot/mpy-cli.git
-cd mpy-cli
 ```
 
 ## Getting started
@@ -46,31 +48,29 @@ cd Getting_started
     ]
 }
 ```
-### Micropython project environment
-We need to initialize our project python environment.
+### Using mpy-cli
 ```commandline
-source ./tools/mpy-cli/env.sh init
+PATH=$PATH:$PWD/tools/mpy-cli
+```
+
+Now you can use mpy-cli. You need call this line again when you start new promt,
+but you set `PATH` variable to you `.bashrc` or `.zshrc` file
+
+### Micropython project environment
+We need to initialize our project python environment. This command installs right stubs for your board. I tried only esp32, but I will test more boards.
+```commandline
+source mpy-cli env init
 ```
 
 ### Connecting to the device
 It is easy to connect to your device. Just type
 ```commandline
-./tools/mpy-cli/connect.sh
+mpy-cli connect
 ```
 ```
 Connected to MicroPython at /dev/tty.SLAB_USBtoUART
 Use Ctrl-] to exit this shell
- 8 2016 00:[aa][ba]j
-
-rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
-configsip: 0, SPIWP:0xee
-clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
-mode:DIO, clock div:2
-load:0x3fff0030,len:4540
-ho 0 tail 12 room 4
-load:0x40078000,len:12448
-load:0x40080400,len:4124
-entry 0x40080680 
+ 
 MicroPython v1.19.1 on 2022-06-18; 4MB/OTA module with ESP32
 Type "help()" for more information.
 >>>
@@ -80,48 +80,57 @@ Type "help()" for more information.
 `device.sh` is wrapper only using Ampy and provides all functionality of that module. See
 
 ```commandline
-./tools/mpy-cli/device.sh --help
+mpy-cli device --help
 ```
 
 ### Upload all
 Upload all files and directories from `.mpy.json`
 
 ```commandline
-./tools/mpy-cli/device.sh upload
+mpy-cli device upload-all
 ```
 
 ### Upload single file
 
 ```commandline
-./tools/mpy-cli/device.sh put src/main.py main.py
+mpy-cli device put src/main.py main.py
 ```
 
 ### Upload folder
 
 ```commandline
-./tools/mpy-cli/device.sh put src/lib lib
+mpy-cli device put src/lib lib
 ```
 
 ### List files
 
 ```commandline
-./tools/mpy-cli/device.sh ls
+mpy-cli device ls
 ```
 
 ### List files at folder
 
 ```commandline
-./tools/mpy-cli/device.sh ls lib
+mpy-cli device ls lib
 ```
 
 ### Remove file
 
 ```commandline
-./tools/mpy-cli/device.sh rm boot.py
+mpy-cli device rm boot.py
 ```
 
 ### Remove folder
 
 ```commandline
-./tools/mpy-cli/device.sh rmdir lib
+mpy-cli device rmdir lib
 ```
+
+## What will be
+- [ ] guide script for initializing .mpy.json file
+- [ ] flashing micropython to the boards
+- [ ] uploading all includes files by one command
+- [ ] test more boards
+- [x] unify and pack to `mpy-cli` command and uses as like `mpy-cli connect` or `mpy-cli device ls`
+- [ ] installing `mpy-cli` to the `PATH` variable 
+- [ ] help and documentation
