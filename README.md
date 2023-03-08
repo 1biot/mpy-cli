@@ -125,7 +125,7 @@ mpy-cli device rm boot.py
 mpy-cli device rmdir lib
 ```
 
-## What will be
+## Future plans
 - [ ] guide script for initializing .mpy.json file
 - [ ] flashing micropython to the boards
 - [ ] uploading all includes files by one command
